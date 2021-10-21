@@ -1,6 +1,12 @@
 /* eslint-disable no-undef */
 import C from '../lib/index.js';
 
+beforeAll(() => {
+  globalThis.crypto = {
+    nextInt: () => Math.floor(Math.random() * 4_294_967_295)
+  }
+});
+
 describe('hmac-sha224', () => {
   it('vector 1', () => {
     expect(C.HmacSHA224('Hi There', C.enc.Hex.parse('0b0b0b0b0b0b0b0b0b0b0b0b0b0b0b0b')).toString())

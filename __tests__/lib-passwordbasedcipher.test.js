@@ -1,6 +1,12 @@
 /* eslint-disable no-undef */
 import C from '../lib/index.js';
 
+beforeAll(() => {
+  globalThis.crypto = {
+    nextInt: () => Math.floor(Math.random() * 4_294_967_295)
+  }
+});
+
 describe('lib-passwordbasedcipher', () => {
   it('encrypt', () => {
     // Compute actual
